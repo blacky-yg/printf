@@ -36,6 +36,7 @@ int _printf(const char *format, ...)
 {
 	int i = 0;
 	va_list args;
+	int count = 0;
 
 	if (!format)
 		return (-1);
@@ -45,16 +46,29 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			if (format[i + 1] == 'c')
+			{
 				_putchar(va_arg(args, int));
+				count++;
+			}
 			if (format[i + 1] == 's')
+			{
 				_putstr(va_arg(args, char *));
+				count++;
+			}
 			if (format[i + 1] == '%')
+			{
 				_putchar('%');
+				count++;
+			}
 			i++;
-		} else
+		}
+		else
+		{
 			_putchar(format[i]);
+			count++;
+		}
 		i++;
 	}
 	va_end(args);
-    return (0);
+    return (count);
 }
