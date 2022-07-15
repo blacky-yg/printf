@@ -18,15 +18,14 @@ int manage_others(const char *f, va_list my_arg)
         str = va_arg(my_arg, char *);
         no_printable(str);
     }
+    return (EXIT_SUCCESS);
 }
 
 void no_printable(char *str)
 {
-    int j = 0;
-    int k = 0;
-    char *new_str;
+    int i = 0;
 
-    for (int i = 0; str[i] != '\0'; i++) {
+    for (i = 0; str[i] != '\0'; i++) {
         if (str[i] >= 127 || str[i] < 32) {
             my_putchar('\\');
             my_putstr(convert_base_octa(str[i], 8));

@@ -23,7 +23,7 @@ int my_put_nbr_a(unsigned int nb)
 {
     int modulo = 0;
 
-    if (nb >= 0 && nb <= 9) {
+    if (nb  && nb <= 9) {
         my_putchar(nb + 48);
     }
     if (nb > 9) {

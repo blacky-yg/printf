@@ -4,7 +4,7 @@
 
 char *my_hexa_final(va_list my_arg, long b)
 {
-    unsigned long long value = va_arg(my_arg, unsigned long long);
+    long value = va_arg(my_arg, long);
     char *new_value_base = malloc(sizeof(char) * 10000);
     int result = 0;
     int i = 0;
@@ -30,11 +30,12 @@ char my_return_hexa(int result)
     }
     if (result >= 0 && result <= 9)
         return (result + 48);
+    return (result);
 }
 
 char *transformer(va_list my_arg, int b)
 {
-    unsigned long long value = va_arg(my_arg, unsigned long long);
+    long value = va_arg(my_arg, long);
     char *new_value_base = malloc(sizeof(char) *10000);
     int result = 0;
     int i = 0;
@@ -66,4 +67,5 @@ int manage_base(const char *f, va_list my_arg)
             my_putstr(transformer(my_arg, 2));
         }
     }
+    return (EXIT_SUCCESS);
 }

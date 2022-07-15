@@ -3,6 +3,7 @@ char *my_revstr(char *str)
     int compt;
     char permut;
     int div;
+    int i = 0;
 
     compt = 0;
     while (str[compt] != '\0') {
@@ -10,7 +11,7 @@ char *my_revstr(char *str)
     }
     div = compt / 2;
     compt--;
-    for (int i = 0; i < div; i++) {
+    for (i = 0; i < div; i++) {
         permut = str[i];
         str[i] = str[compt];
         str[compt] = permut;

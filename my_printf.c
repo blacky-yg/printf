@@ -3,7 +3,7 @@
 
 void manage_id(const char *f, va_list my_arg, int i)
 {
-    int a = 0;
+    __attribute__((unused)) int  a = 0;
 
     if (*f == 'i' || *f == 'd') {
         i++;
@@ -19,8 +19,6 @@ void manage_id(const char *f, va_list my_arg, int i)
 
 int base_flags(const char *f, va_list my_arg, int i)
 {
-    int a = 0;
-
     if (*f == 'c' && i == 0) {
         ++i;
         my_putchar(va_arg(my_arg, int));
@@ -59,12 +57,13 @@ const char *manage_erro(const char *f) {
     return (f);
 }
 
-void manage_erroors(char f, va_list my_arg)
+void manage_erroors(char f)
 {
     int j = 0;
+    int i = 0;
     char tab_flags[] = "cdisuxXS%pob";
 
-    for (int i = 0; tab_flags[i] != '\0'; i++) {
+    for (i = 0; tab_flags[i] != '\0'; i++) {
         if (f == tab_flags[i])
             j = 1;
     }
@@ -78,7 +77,7 @@ int _printf(const char *f, ...)
 {
     va_list my_arg;
     int i = 0;
-    const char *compare = 0;
+    const char *format = f;
 
     va_start(my_arg, f);
     for (; *f != '\0'; f++) {
@@ -88,11 +87,11 @@ int _printf(const char *f, ...)
             base_flags(f, my_arg, i);
             manage_base(f, my_arg);
             manage_others(f, my_arg);
-            manage_erroors(*f, my_arg);
+            manage_erroors(*f);
         } else {
             my_putchar(*f);
         }
     }
     va_end(my_arg);
-    return (my_strlen(f));
+    return (my_strlen(format));
 }
